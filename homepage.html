@@ -21,15 +21,18 @@
 		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				$('#student_service').hide();
-				$('#faculty_service').hide();
-				$("#personal_information").button();
+				$("input[type=button]").button().hide();
 			});
 		</script>
+		<style type="text/css">
+			img{position:absolute}
+			h1{position: relative;left:120px}
+		</style>
 	</head>
 
 	<body>
 		<header class="ui-widget ui-widget-header ui-corner-top">
+			<img src="georgia_tech_yellow_jackets.jpeg"/>
 			<h1>Homepage</h1>
 		</header>
 		<div class="ui-widget ui-widget-content ui-corner-bottom">
@@ -38,6 +41,10 @@
 			<!-- Check personal information existance before go into service -->
 			<input type="button" id="student_service" value="Student Service" onclick="" />
 			<input type="button" id="faculty_service" value="Faculty Service" onclick="" />
+			<br>
+			<input type="button" id="admin_report" value="View Admin Report" onclick="" />
+			<br>
+			<input type="button" id="add_course" value="Add New Course" />
 			<br>
 			<footer>
 				<p>

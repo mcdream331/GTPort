@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>GTPort Student Personal Information</title>
+		<meta name="description" content="Student Personal Information Screen" />
+		<meta name="author" content="MENGYU ZHANG" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<link rel="shortcut icon" href="favicon.ico" />
+		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+
+		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
+		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("input[type=button]").button();
+				$("#dob").datepicker();
+				$("#radio, #checkbox").buttonset();
+				$("#checkbox, #history").hide();
+				$("#add_history").button({
+					icon : {
+						primary : "ui-icon-plus"
+					}
+				});
+			});
+		</script>
+		<style type="text/css">
+			img {
+				position: absolute
+			}
+			h1 {
+				position: relative;
+				left: 120px
+			}
+			#previous_history {
+				width: 800px
+			}
+			#history > div {
+				width: 700px
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="ui-widget ui-widget-header ui-corner-top">
+			<img src="georgia_tech_yellow_jackets.jpeg"/>
+			<h1>Personal Information</h1>
+		</header>
+		<div class="ui-widget ui-widget-content ui-corner-bottom">
+			<p>
+				Name
+				<input type="text" id="name"/>
+			</p>
+			<p>
+				Date of Birth
+				<input type="text" id="dob"/>
+			</p>
+			<p>
+				Gender
+				<select>
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+				</select>
+			</p>
+			<p>
+				Address
+				<input type="text" id="address"/>
+			</p>
+			<p>
+				Permenant Address
+				<input type="text" id="permenant_address"/>
+			</p>
+			<p>
+				Contact Number
+				<input type="text" id="number"/>
+			</p>
+			<p>
+				Email
+				<input type="text" id="email"/>
+			</p>
+			<p>
+				Willing to Tutor?
+				<div id="radio">
+					<input type="radio" id="radio_yes" value="yes" onclick="$('#radio_no').removeAttr('checked');" />
+					<label for="radio_yes">Yes</label>
+					<input type="radio" id="radio_no" value="no" checked="checked"/>
+					<label for="radio_no">No</label>
+				</div>
+			</p>
+			<p>
+				Course to Tutor
+				<div id="checkbox">
+					<!-- Sample Checkbox code
+					<input type="checkbox" id="check1" />
+					<label for="check1">check1</label> -->
+				</div>
+			</p>
+			<p>
+				Major
+				<select id="major">
+					<option value="AE">Aerospace Engineering</option>
+					<option value="BIO">Biology</option>
+					<option value="BE">Biological Engineering</option>
+					<option value="CS">Computer Science</option>
+					<option value="ECE">Electrical & Computer Engineering</option>
+				</select>
+			</p>
+
+			<p>
+				Degree
+				<select id="degree">
+					<option value="bs">Bachelor</option>
+					<option value="ms">Master</option>
+					<option value="phd">Ph.D</option>
+				</select>
+			</p>
+
+			<div id="previous_history">
+				<header class="ui-widget ui-widget-header ui-corner-top">
+					<h3 >Previous History</h3>
+				</header>
+				<div id="history" class="ui-widget ui-widget-content ui-corner-bottom">
+					<div id="history1" class="ui-widget ui-widget-content ui-corner-all">
+						<p>
+							Institution Name
+							<input type="text" id="history1_name" />
+						</p>
+						<p>
+							Major
+							<input type="text" id="history1_major" />
+						</p>
+						<p>
+							Degree
+							<select id="history1_degree">
+								<option value="bs">Bachelor</option>
+								<option value="ms">Master</option>
+								<option value="phd">Ph.D</option>
+							</select>
+						</p>
+						<p>
+							Year of graduation
+							<input type="text" id="history1_year" />
+						</p>
+						<p>
+							GPA
+							<input type="text" id="history1_gpa" />
+						</p>
+					</div>
+					<div id="history2" class="ui-widget ui-widget-content ui-corner-all">
+						<p>
+							Institution Name
+							<input type="text" id="history2_name" />
+						</p>
+						<p>
+							Major
+							<input type="text" id="history2_major" />
+						</p>
+						<p>
+							Degree
+							<select id="history2_degree">
+								<option value="bs">Bachelor</option>
+								<option value="ms">Master</option>
+								<option value="phd">Ph.D</option>
+							</select>
+						</p>
+						<p>
+							Year of graduation
+							<input type="text" id="history2_year" />
+						</p>
+						<p>
+							GPA
+							<input type="text" id="history2_gpa" />
+						</p>
+					</div>
+					<div id="history3" class="ui-widget ui-widget-content ui-corner-all">
+						<p>
+							Institution Name
+							<input type="text" id="history3_name" />
+						</p>
+						<p>
+							Major
+							<input type="text" id="history3_major" />
+						</p>
+						<p>
+							Degree
+							<select id="history3_degree">
+								<option value="bs">Bachelor</option>
+								<option value="ms">Master</option>
+								<option value="phd">Ph.D</option>
+							</select>
+						</p>
+						<p>
+							Year of graduation
+							<input type="text" id="history3_year" />
+						</p>
+						<p>
+							GPA
+							<input type="text" id="history3_gpa" />
+						</p>
+					</div>
+
+				</div>
+				<input type="button" id="add_history" value="Add History" onclick=""/>
+			</div>
+
+			<input type="button" value="Cancel" onclick="history.go(-1);" />
+			<input type="button" id="submit" value="Submit" onclick="" />
+			<br>
+			<footer>
+				<p>
+					&copy; Copyright  by MENGYU ZHANG
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
