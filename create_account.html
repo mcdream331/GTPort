@@ -15,46 +15,58 @@
 
 		<link rel="shortcut icon" href="favicon.ico" />
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
-
+		<!-- style sheet -->
 		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
+		<link rel="stylesheet" type="text/css" href="css/welcome.css" />
+		<!-- javascript -->
 		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("input[type=button]").button();
+			});
+		</script>
 		<style type="text/css">
-			img{position:absolute}
-			h1{position: relative;left:120px}
+			img {
+				position: absolute
+			}
+			h1 {
+				text-align: center;
+			}
 		</style>
 	</head>
 
 	<body>
-
-		<header class="ui-widget ui-widget-header ui-corner-top">
-			<img src="georgia_tech_yellow_jackets.jpeg"/>
-			<h1>Create Account</h1>
-		</header>
-		<div class="ui-widget ui-widget-content ui-corner-bottom">
-			Username
-			<input type="text" id='username' name="username" />
-			<br>
-			Password
-			<input type="password" id='password' name="password" />
-			<br>
-			Confirm Password
-			<input type="password" id='confirm_password' name="confirm_password" />
-			<br>
-			Type of User
-			<select id="usertype">
-				<option value="student">Student</option>
-				<option value="faculty">Faculty</option>
-			</select>
-			<br>
-			<input type="button" id="cancel" value="Cancel" onclick="history.go(-1);"/>
-			<input type="button" id="register" value="Register"/>
-			<br>
-			<footer>
-				<p>
-					&copy; Copyright  by MENGYU ZHANG
-				</p>
-			</footer>
+		<div class="welcome">
+			<header class="ui-widget ui-widget-header ui-corner-top">
+				<img src="georgia_tech_yellow_jackets.jpeg"/>
+				<h1>Create Account</h1>
+			</header>
+			<div class="ui-widget ui-widget-content ui-corner-bottom" id="body">
+				Username
+				<input type="text" id='username' name="username" />
+				<br>
+				Password
+				<input type="password" id='password' name="password" />
+				<br>
+				Confirm Password
+				<input type="password" id='confirm_password' name="confirm_password" />
+				<br>
+				Type of User
+				<select id="usertype">
+					<option value="student">Student</option>
+					<option value="faculty">Faculty</option>
+				</select>
+				<br>
+				<input type="button" id="cancel" value="Cancel" onclick="history.go(-1);"/>
+				<input type="button" id="register" value="Register"/>
+				<br>
+				<footer>
+					<p>
+						&copy; Copyright  by MENGYU ZHANG
+					</p>
+				</footer>
+			</div>
 		</div>
 	</body>
 </html>
