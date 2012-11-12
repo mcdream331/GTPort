@@ -1,12 +1,14 @@
 .welcome{
-	margin-left:auto;
-	margin-right:auto;
 	margin-top:120px;
-	width:600px;
+	max-width: 600px;
 }
 
-input{
-	margin-top:10px;
+.block{
+	margin-top: 10px;
+}
+
+.button{
+	margin-top: 20px;
 }
 
 footer{
@@ -14,5 +16,5 @@ footer{
 }
 
 #body{
-	text-align:center;
+	text-align:right;
 }

@@ -17,7 +17,8 @@
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 		<!-- style sheet -->
 		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
-		<link rel="stylesheet" type="teext/css" href="css/welcome.css" />
+		<link rel="stylesheet" type="text/css" href="css/welcome.css" />
+		<link rel="stylesheet" type="text/css" href="960_css/960_24_col.css">
 		<!-- javascript -->
 		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
@@ -37,21 +38,39 @@
 	</head>
 
 	<body>
-		<div class="welcome">
+		<div class="container_24 welcome">
 			<header class="ui-widget ui-widget-header ui-corner-top">
 				<img src="georgia_tech_yellow_jackets.jpeg"/>
 				<h1>GTPort</h1>
 			</header>
 			<div class="ui-widget ui-widget-content ui-corner-bottom" id="body">
-				<label>Username:</label>
-				<input type="text" id='username' name="username"/>
-				<br>
-				<label>Password:</label>
-				<input type="password" id='password' name="password" />
-				<br>
-				<input type="button" id="create_account" onclick="location.href='create_account.html'" value="Create Account"/>
-				<input type="button" id="login" value="Login" />
-				<br>
+				<div class="block">
+					<div class="grid_3 prefix_4">
+						<label> Username </label>
+					</div>
+					<div class="grid_3 suffix_4">
+						<input type="text" id='username' name="username" />
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="block">
+					<div class="grid_3 prefix_4">
+						<label>Password</label>
+					</div>
+					<div class="grid_3 suffix_4">
+						<input type="password" id='password' name="password" />
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="button">
+					<div class="grid_4 prefix_3">
+						<input type="button" id="login" value="Login" />
+					</div>
+					<div class="grid_3 suffix_4">
+						<input type="button" id="create_account" onclick="location.href='create_account.html'" value="Create Account"/>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 				<footer>
 					<p>
 						&copy; Copyright  by MENGYU ZHANG
