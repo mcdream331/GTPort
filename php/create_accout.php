@@ -1,6 +1,8 @@
 <?php
 mysql_connect($host,$username,$password) or die( "Unable to connect");;
 mysql_select_db($database) or die( "Unable to select database");
+$username = $_GET(username);
+$password = $_GET(password);
 
 // When password and comfirm password are equal
 $sql_query = "INSERT INTO        User (Username, Password)
@@ -10,6 +12,8 @@ VALUES        ($username)";
 
 mysql_query ($sql_query);
 mysql_query ($sql_query1);  
+
+$usertype = $_GET(user_type);
 
 if ($usertype="Student")
 	$sql_query2 = "INSERT INTO        Student 	(Student_Username)
