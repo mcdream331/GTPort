@@ -17,6 +17,9 @@
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 
 		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
+		<link rel="stylesheet" type="text/css" href="960_css/960_24_col.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+
 		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript">
@@ -25,32 +28,39 @@
 			});
 		</script>
 		<style type="text/css">
-			img{position:absolute}
-			h1{position: relative;left:120px}
+			img {
+				position: absolute
+			}
+			h1 {
+				position: relative;
+				left: 120px
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="ui-widget ui-widget-header ui-corner-top">
-			<img src="georgia_tech_yellow_jackets.jpeg"/>
-			<h1>Homepage</h1>
-		</header>
-		<div class="ui-widget ui-widget-content ui-corner-bottom">
-			<input type="button" id="personal_information" onclick="" value="Personal Information"/>
-			<br>
-			<!-- Check personal information existance before go into service -->
-			<input type="button" id="student_service" value="Student Service" onclick="" />
-			<input type="button" id="faculty_service" value="Faculty Service" onclick="" />
-			<br>
-			<input type="button" id="admin_report" value="View Admin Report" onclick="" />
-			<br>
-			<input type="button" id="add_course" value="Add New Course" />
-			<br>
-			<footer>
-				<p>
-					&copy; Copyright  by MENGYU ZHANG
-				</p>
-			</footer>
+		<div class="container_24">
+			<header class="ui-widget ui-widget-header ui-corner-top">
+				<img src="georgia_tech_yellow_jackets.jpeg"/>
+				<h1>Homepage</h1>
+			</header>
+			<div class="ui-widget ui-widget-content ui-corner-bottom">
+				<input type="button" id="personal_information" onclick="" value="Personal Information"/>
+				<br>
+				<!-- Check personal information existance before go into service -->
+				<input type="button" id="student_service" value="Student Service" onclick="" />
+				<input type="button" id="faculty_service" value="Faculty Service" onclick="" />
+				<br>
+				<input type="button" id="admin_report" value="View Admin Report" onclick="" />
+				<br>
+				<input type="button" id="add_course" value="Add New Course" />
+				<br>
+				<footer>
+					<p>
+						&copy; Copyright  by MENGYU ZHANG
+					</p>
+				</footer>
+			</div>
 		</div>
 	</body>
 </html>
