@@ -46,12 +46,6 @@ session_start();
 						WHERE	Student_Username = '$username';";
 		mysql_query($sql_query1) or die(mysql_error());
 
-		//Add Previous Education
-		// $sql_query2 = "	INSERT INTO Education_History (Student_Username, Name_of_School, Year_Of_Grad, Degree, Major, GPA)
-		// VALUES ('$username', '$name_of_school', '$Year_Of_Grade', '$Degree', '$Major', '$GPA')";
-		// mysql_query($sql_query2) or die(mysql_error());
-		
-		
 		//Apply for Tutor Course
 		foreach ($_POST["tutor_course"] as $course_code) {
 			//echo $value;
@@ -61,20 +55,35 @@ session_start();
 			$result_sub = mysql_query($sql_query_sub) or die(mysql_error());
 			$title_sub = mysql_result($result_sub, 0, 'Title');
 			// echo $title_sub;
-			
+
 			$sql_query2 = "INSERT INTO
 						Apply_Tutor (Student_Username, Title)
 						VALUES ('$username', '$title_sub')";
 			mysql_query($sql_query2);
 		}
 
-		// //POST History Information from Input
-		// $name_of_school = $_POST["name_of_school"];
-		// $Year_Of_Grade = $_POST["Year_Of_Grade"];
-		// $Degree = $_POST["Degree"];
-		// $major = $_POST["major"];
-		// $GPA = $_POST["GPA"];
+		//POST History Information from Input
+		for ($i = 0; $i < 3; $i++) {
+			$name_of_school = $_POST["name_of_school$i"];
+			$Year_Of_Grade = $_POST["year_of_grad$i"];
+			$Degree = $_POST["degree$i"];
+			$Major = $_POST["major$i"];
+			$GPA = $_POST["gpa$i"];
 
+			// echo $name_of_school."<br>";
+			// echo $Year_Of_Grade."<br>";
+			// echo $Degree."<br>";
+			// echo $major."<br>";
+			// echo $GPA."<br>";
+
+			//Add Previous Education
+			if ($name_of_school != "" && $Year_Of_Grade != "" && $Degree != "" && $Major != "" && $GPA != "") {
+
+				$sql_query3 = "	INSERT INTO Education_History (Student_Username, Name_of_School, Year_Of_Grad, Degree, Major, GPA)
+							VALUES ('$username', '$name_of_school', '$Year_Of_Grade', '$Degree', '$Major', '$GPA')";
+				mysql_query($sql_query3);
+			}
+		}
 		//Close Connection
 		mysql_close($link);
 	?>

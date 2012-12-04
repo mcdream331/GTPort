@@ -177,13 +177,13 @@ session_start();
 				$j = $i+1;
 				$string.="<tr><td>	Histroy$j</td></tr>";
 				$string.="<tr><td>Institute Name</td>
-					<td><input type='text' name='institute_name$i' value=\"".mysql_result($result3, $i, 'Name_of_School')."\"/></td></tr>";
+					<td><input type='text' name='name_of_school$i' value=\"".mysql_result($result3, $i, 'Name_of_School')."\"/></td></tr>";
 				$string.="<tr><td>Major</td>
 					<td><input type='text' name='major$i' value=\"".mysql_result($result3, $i, 'Major')."\"/></td></tr>";
 				$string.="<tr><td>Degree</td>
 					<td><input type='text' name='degree$i' value=\"".mysql_result($result3, $i, 'Degree')."\"/></td></tr>";
 				$string.="<tr><td>Year of Graduation</td>
-					<td><input type='text' name='year_of_graduation$i' value=\"".mysql_result($result3, $i, 'Year_of_Grad')."\"/></td></tr>";
+					<td><input type='text' name='year_of_grad$i' value=\"".mysql_result($result3, $i, 'Year_of_Grad')."\"/></td></tr>";
 				$string.="<tr><td>GPA</td>
 					<td><input type='text' name='gpa$i' value=\"".mysql_result($result3, $i, 'GPA')."\"/></td></tr>";
 				$i+=1;
@@ -194,13 +194,13 @@ session_start();
 			$j = $i+1;
 			$string.="<tr><td>	Histroy$j</td></tr>";
 			$string.="<tr><td>Institute Name</td>
-					<td><input type='text' name='institute_name$i'/></td></tr>";
+					<td><input type='text' name='name_of_school$i'/></td></tr>";
 			$string.="<tr><td>Major</td>
 					<td><input type='text' name='major$i'/></td></tr>";
 			$string.="<tr><td>Degree</td>
 					<td><input type='text' name='degree$i'/></td></tr>";
 			$string.="<tr><td>Year of Graduation</td>
-					<td><input type='text' name='year_of_graduation$i'/></td></tr>";
+					<td><input type='text' name='year_of_grad$i'/></td></tr>";
 			$string.="<tr><td>GPA</td>
 					<td><input type='text' name='gpa$i'/></td></tr>";
 			$i+=1;
