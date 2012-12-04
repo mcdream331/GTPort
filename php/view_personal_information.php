@@ -33,8 +33,8 @@ $sql_query2 = "SELECT Title FROM Department_Course as C, Department as D WHERE D
 $sql_query3 = "SELECT Letter FROM Section WHERE Title = $Title";
 $result2 = $mysql_query ($sql_query2) or die (mysql_error());
 $result3 = $mysql_query ($sql_query3) or die (mysql_error());
-echo "$result2"
-echo "$result3"
+echo "$result2";
+echo "$result3";
 
  //After Entering Information new information
  $name = $_Get("name");
@@ -68,5 +68,5 @@ echo "$result3"
  $sql_query8 = "DELETE FROM Faculty_Research_Interest WHERE Instructor_Username = $username";
  $sql_query9 = "INSERT INTO Faculty_Research_Interest (Instructor_Username, Research_Interest) VALUES Instructor_Username = $Username, Rearch_Interests = $Research_Interests";
  mysql_query($sql_query8) or die (mysql_error());
- mysql_query($sql_query9) or die (mysql_error));
+ mysql_query($sql_query9) or die (mysql_error());
  
