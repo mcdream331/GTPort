@@ -63,13 +63,13 @@ session_start();
 		//echo $rowcount;
 		if ($rowcount != 0) {
 			$i = 0;
-			$string.="<tr><td>Willing to tutor these course?</td></tr><tr>";
+			$string.="<tr><td>Willing to tutor these course?</td></tr><tr><td>";
 			while ($i < $rowcount) {
 
-				$string .= '<td><input type="checkbox" name="tutor_course" value="'.mysql_result($result1, $i, 'Code').'"/>' . mysql_result($result1, $i, 'Code')."</td>";
+				$string .= '<input type="checkbox" name="tutor_course[]" value="'.mysql_result($result1, $i, 'Code').'"/>' . mysql_result($result1, $i, 'Code');
 				$i+=1;
 			}
-			$string.="</tr>";
+			$string.="</td></tr>";
 		}
 		//Degree and Major
 		$sql_query2 = "	SELECT 	Degree, Major
