@@ -3,6 +3,7 @@ session_start();
 ?>
 <html>
 	<body>
+		<h1>GTPort</h1>
 		<?php
 		$username = $_SESSION['user'];
 		//establish connection
@@ -19,18 +20,12 @@ session_start();
 		$result = mysql_query($sql_query) or die('error: ' . mysql_error());
 		$nRow = mysql_num_rows($result);
 		if ($nRow == 0) {
-			mysql_close($link);
-			echo "User not exist!<br><input type='button' value='Login' onclick='location.href=\"login.php\"'/>";
+			echo "Please enter information before using service!<br><input type='button' value='Personal Information' onclick='location.href=\"student_personal_information.php\"'/>";
 		} else {
-			$row = mysql_fetch_assoc($result);
-			if ($row != NIL) {
-				if ($row["Password"] != $password) {
-					echo "Login failure! Please try again.<br><input type='button' value='Login' onclick='location.href=\"login.php\"'/>";
-				}
-				//close connection
-				mysql_close($link);
-			}
+			echo "<input type='button' value='Personal Information' onclick='location.href=\"student_personal_information.php\"'/><br><input type='button' value='Student Service' onclick='location.href=\"student_service.php\"'/>";
 		}
+		//close connection
+		mysql_close($link);
 		?>
 	</body>
 </html>
