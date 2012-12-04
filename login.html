@@ -11,28 +11,27 @@
 		<meta name="description" content="Login Screen" />
 		<meta name="author" content="MENGYU ZHANG" />
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-
 		<link rel="shortcut icon" href="favicon.ico" />
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 		<!-- style sheet -->
-		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
 		<link rel="stylesheet" type="text/css" href="css/welcome.css" />
-		<link rel="stylesheet" type="text/css" href="960_css/960_24_col.css">
+		<link rel="stylesheet" type="text/css" href="960_css/960_24_col.css"> -->
 		<!-- javascript -->
-		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+		<!-- <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$("input[type=button]").button();
 			});
-		</script>
+		</script> -->
+		<script type="text/javascript" src="js/session.js"></script>
 		<style type="text/css">
 			img {
 				position: absolute
 			}
 			h1 {
-				text-align:center;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -40,7 +39,7 @@
 	<body>
 		<div class="container_24 welcome">
 			<header class="ui-widget ui-widget-header ui-corner-top">
-				<img src="georgia_tech_yellow_jackets.jpeg"/>
+				<!-- <img src="georgia_tech_yellow_jackets.jpeg"/> -->
 				<h1>GTPort</h1>
 			</header>
 			<div class="ui-widget ui-widget-content ui-corner-bottom" id="body">
@@ -64,7 +63,7 @@
 				<div class="clearfix"></div>
 				<div class="button">
 					<div class="grid_4 prefix_3">
-						<input type="button" id="login" value="Login" />
+						<input type="button" id="login" value="Login" onclick="login()"/>
 					</div>
 					<div class="grid_3 suffix_4">
 						<input type="button" id="create_account" onclick="location.href='create_account.html'" value="Create Account"/>
