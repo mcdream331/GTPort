@@ -62,19 +62,21 @@ session_start();
 				$end_time = mysql_result($result1, $i,"End_Time");
 				$location = mysql_result($result1, $i,"Location");
 				
+				//echo "crn:".$crn;
+				
 				//add to table
 				$string2.='<tr>
 					<td><input type="checkbox" name="crn"value="'.$crn.'"></td>
-					<td>$crn</td>
-					<td>$title</td>
-					<td>$code</td>
-					<td>$letter</td>
-					<td>$name</td>
-					<td>$day</td>
-					<td>$start_time</td>
-					<td>$end_time</td>
-					<td>$location/td>
-					<td><select name="">
+					<td>'.$crn.'</td>
+					<td>'.$title.'</td>
+					<td>'.$code.'</td>
+					<td>'.$letter.'</td>
+					<td>'.$name.'</td>
+					<td>'.$day.'</td>
+					<td>'.$start_time.'</td>
+					<td>'.$end_time.'</td>
+					<td>'.$location.'</td>
+					<td><select name="gradingMode">
 						<option value="R">Register</option>
 						<option value="A">Audit</option>
 						<option value="P">Pass/Fail</option>
@@ -84,8 +86,9 @@ session_start();
 		}
 
 		$string2.="</table>";
-		$string2.='<input type="Submit" value="Next"/>
-			<input type="button" value="Back" onclick="location.href=\'student_service.php\'" /></form>';
+		$string2.='<input type="button" value="Back" onclick="location.href=\'department_select.php\'" />
+					<input type="Submit" value="Register"/>
+					</form>';
 			
 		echo $string2;
 		//close connection
