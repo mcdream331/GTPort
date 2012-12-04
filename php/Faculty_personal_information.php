@@ -58,9 +58,9 @@ session_start();
 			$department = $row1["Name"];
 		}
 		
-		if($major=="AE"){
-		$string.="<tr><td>Major</td>
-				<td><select name='major'>
+		if($department=="AE"){
+		$string.="<tr><td>Department</td>
+				<td><select name='department'>
 				<option value='AE'>Aerospace Engineering</option>
 				<option value='BIO'>Biology</option>
 				<option value='BE'>Biological Engineering</option>
@@ -68,9 +68,9 @@ session_start();
 				<option value='ECE'>Electrical & Computer Engineering</option>
 				</select></td></tr>";
 		}
-		elseif ($major=="BIO") {
-			$string.="<tr><td>Major</td>
-				<td><select name='major'>
+		elseif ($department=="BIO") {
+			$string.="<tr><td>Department</td>
+				<td><select name='department'>
 				<option value='BIO'>Biology</option>
 				<option value='AE'>Aerospace Engineering</option>
 				<option value='BE'>Biological Engineering</option>
@@ -78,9 +78,9 @@ session_start();
 				<option value='ECE'>Electrical & Computer Engineering</option>
 				</select></td></tr>";
 		}
-		elseif ($major=="BE") {
-			$string.="<tr><td>Major</td>
-				<td><select name='major'>
+		elseif ($department=="BE") {
+			$string.="<tr><td>Department</td>
+				<td><select name='department'>
 				<option value='BE'>Biological Engineering</option>
 				<option value='BIO'>Biology</option>
 				<option value='AE'>Aerospace Engineering</option>
@@ -88,9 +88,9 @@ session_start();
 				<option value='ECE'>Electrical & Computer Engineering</option>
 				</select></td></tr>";
 		}
-		elseif ($major=="CS") {
-			$string.="<tr><td>Major</td>
-				<td><select name='major'>
+		elseif ($department=="CS") {
+			$string.="<tr><td>Department</td>
+				<td><select name='department'>
 				<option value='CS'>Computer Science</option>
 				<option value='BIO'>Biology</option>
 				<option value='AE'>Aerospace Engineering</option>
@@ -98,9 +98,9 @@ session_start();
 				<option value='ECE'>Electrical & Computer Engineering</option>
 				</select></td></tr>";
 		}
-		elseif ($major=="ECE") {
-			$string.="<tr><td>Major</td>
-				<td><select name='major'>
+		elseif ($department=="ECE") {
+			$string.="<tr><td>Department</td>
+				<td><select name='department'>
 				<option value='ECE'>Electrical & Computer Engineering</option>
 				<option value='BIO'>Biology</option>
 				<option value='AE'>Aerospace Engineering</option>
@@ -110,28 +110,28 @@ session_start();
 		}
 		echo $string;
 				
-		if($degree=="Professor"){
-			$string.="<tr><td>Degree</td>
-				<td><select name='degree'>
-				<option value='BS'";if($degree=="Professor"){$string.=" selected";}$string.=">Professor.</option>
-				<option value='MS'";if($degree=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
-				<option value='PHD'";if($degree=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
+		if($position=="Professor"){
+			$string.="<tr><td>Position</td>
+				<td><select name='position'>
+				<option value='Professor'";if($position=="Professor"){$string.=" selected";}$string.=">Professor.</option>
+				<option value='Associate Professor'";if($position=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
+				<option value='Assistant Professor'";if($position=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
 				</select></td></tr>";
 		}
-		if($degree=="MS"){
-			$string.="<tr><td>Degree</td>
-				<td><select name='degree'>
-				<option value='MS'";if($degree=="Professor"){$string.=" selected";}$string.=">Professor.</option>
-				<option value='BS'";if($degree=="BS"){$string.=" selected";}$string.=">B.S.</option>
-				<option value='PHD'";if($degree=="PHD"){$string.=" selected";}$string.=">PhD</option>
+		if($position=="Associate Professor"){
+			$string.="<tr><td>Position</td>
+				<td><select name='position'>
+				<option value='Associate Professor'";if($position=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
+				<option value='Professor'";if($position=="Professor"){$string.=" selected";}$string.=">Professor</option>
+				<option value='Assistant Professor'";if($position=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
 				</select></td></tr>";
 		}
-		if($degree=="PHD"){
-			$string.="<tr><td>Degree</td>
-				<td><select name='degree'>
-				<option value='PHD'";if($degree=="Professor"){$string.=" selected";}$string.=">Professor</option>
-				<option value='MS'";if($degree=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
-				<option value='BS'";if($degree=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
+		if($position=="Assistant Professor"){
+			$string.="<tr><td>Position</td>
+				<td><select name='Position'>
+				<option value='Assistant Professor'";if($position=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
+				<option value='Associate Professor'";if($position=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
+				<option value='Professor'";if($position=="Professor"){$string.=" selected";}$string.=">Professor</option>
 				</select></td></tr>";
 		}
 		
