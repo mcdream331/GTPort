@@ -108,7 +108,7 @@ session_start();
 				<option value='CS'>Computer Science</option>
 				</select></td></tr>";
 		}
-		echo $string;
+		
 				
 		if($position=="Professor"){
 			$string.="<tr><td>Position</td>
@@ -134,7 +134,7 @@ session_start();
 				<option value='Professor'";if($position=="Professor"){$string.=" selected";}$string.=">Professor</option>
 				</select></td></tr>";
 		}
-		
+		echo $string;
 		//Populate Drop Down for Course and Section
 		$sql_query2 = "	SELECT Title 
 						FROM Department_Course as C, Department as D 
