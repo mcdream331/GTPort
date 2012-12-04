@@ -1,4 +1,4 @@
- <?php
+<?php
 $link = mysql_connect("localhost", "root", "root");
 if (!$link) {
 	die('Could not connect: ' . mysql_error());
@@ -23,7 +23,7 @@ $email = $row["Email_Id"];
 //View Department Information
 $sql_query1 = "SELECT Position, Name FROM Faculty NATURAL JOIN Department WHERE Username = $username";
 $result1 = mysql_query($sql_query1) or die (mysql_error());
-while ($row1 = mysql_fetch_array($result1){
+while ($row1 = mysql_fetch_array($result1)){
 $positon = $row1["Position"];
 $department = $row1["Name"];
 }
@@ -68,5 +68,5 @@ echo "$result3"
  $sql_query8 = "DELETE FROM Faculty_Research_Interest WHERE Instructor_Username = $username";
  $sql_query9 = "INSERT INTO Faculty_Research_Interest (Instructor_Username, Research_Interest) VALUES Instructor_Username = $Username, Rearch_Interests = $Research_Interests";
  mysql_query($sql_query8) or die (mysql_error());
- mysql_query($sql_query9) or die (mysql_error)));
+ mysql_query($sql_query9) or die (mysql_error));
  
