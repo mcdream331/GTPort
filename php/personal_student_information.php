@@ -41,7 +41,7 @@ echo "$result1"
  $research_interest = $_Get("research_interests");
  
  //Update Personal Information
- $sql_query4 = "UPDATE Regular_User	Name = $name, Gender = $gender, DOB = $dob, Email_ID = $email, Contact_Number = $contact_number, Address = $address, Permanent_Address=$permanent_address WHERE Username = $username
+ $sql_query4 = "UPDATE Regular_User	Name = $name, Gender = $gender, DOB = $dob, Email_ID = $email, Contact_Number = $contact_number, Address = $address, Permanent_Address=$permanent_address WHERE Username = $username"
  mysql_query($sql_query4)or die (mysql_error())";
  
  //Update Department Information
