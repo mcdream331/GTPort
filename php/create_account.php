@@ -21,7 +21,7 @@ mysql_query($sql_query1) or die('insert regular user table error: ' . mysql_erro
 if ($usertype == "student") {
 	$sql_query2 = "INSERT INTO Student (Student_Username) VALUES ('$username');";
 } elseif ($usertype == "faculty") {
-	$sql_query2 = "INSERT INTO Faculty (Instructor_Username) VALUES ('$username');";
+	$sql_query2 = "INSERT INTO Faculty (Instructor_Username, Dept_Id) VALUES ('$username','1');";
 }
 
 mysql_query($sql_query2) or die('insert student/faculty table error:' . mysql_error());
