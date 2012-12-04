@@ -38,7 +38,7 @@ session_start();
 			$string.="<tr><td>Select tutor names here</td></tr><tr>";
 			while ($i < $rowcount) {
 
-				$string .= '<td><input type="checkbox" name="tutor_course" value="'.mysql_result($result, $i, 'Name').'"/>' . mysql_result($result1, $i, 'Code')."</td>";
+				$string .= '<td><input type="checkbox" name="tutors" value="'.mysql_result($result, $i, 'Name').'"/>' . mysql_result($result, $i, 'Name')."</td>";
 				$i+=1;
 			}
 			$string.="</tr>";
