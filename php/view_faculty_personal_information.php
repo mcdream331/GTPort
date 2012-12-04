@@ -38,18 +38,18 @@ echo "$result2";
 echo "$result3";
 
 //After Entering Information new information
-$name = $_Get("name");
-$dob = $_Get("dob");
-$gender = $_Get("gender");
-$address = $_Get("address");
-$permenant_address = $_Get("permenant_address");
-$contact_number = $_Get("number");
-$email = $_Get("email");
-$department = $_Get("department");
-$position = $_Get("position");
-$course = $_Get("course");
-$section = $_Get("section");
-$research_interest = $_Get("research_interests");
+$name = $_Get["name"];
+$dob = $_Get["dob"];
+$gender = $_Get["gender"];
+$address = $_Get["address"];
+$permenant_address = $_Get["permenant_address"];
+$contact_number = $_Get["number"];
+$email = $_Get["email"];
+$department = $_Get["department"];
+$position = $_Get["position"];
+$course = $_Get["course"];
+$section = $_Get["section"];
+$research_interest = $_Get["research_interests"];
 
 //Update Personal Information
 $sql_query4 = "UPDATE Regular_User	Name = $name, Gender = $gender, DOB = $dob, Email_ID = $email, Contact_Number = $contact_number, Address = $address, Permanent_Address=$permanent_address WHERE Username = $username"
