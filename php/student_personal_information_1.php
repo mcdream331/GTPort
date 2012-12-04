@@ -86,6 +86,8 @@ session_start();
 		}
 		//Close Connection
 		mysql_close($link);
+		
+		echo "Personal Information updated!Click to go back to student homepage. <br><input type='button' value='Homepage' onclick='location.href=\"student_homepage.php\"'/>";
 	?>
 </body>
 </html>
