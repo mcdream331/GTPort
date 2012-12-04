@@ -24,7 +24,7 @@ session_start();
 		}
 		mysql_select_db(cs4400) or die("Unable to select database");
 
-		$string2='';
+		$string2='<form action="Register_course2.php" method="post">';
 		$string2.='<table><tr>
 					<th>Select</th>
 					<th>CRN</th>
@@ -33,7 +33,8 @@ session_start();
 					<th>Section</th>
 					<th>Instructor</th>
 					<th>Days</th>
-					<th>Time</th>
+					<th>Start Time</th>
+					<th>End Time</th>
 					<th>Location</th>
 					<th>Mode of Grading</th>
 				</tr>';
@@ -52,7 +53,33 @@ session_start();
 		if($rowcount1!=0){
 			for ($i=0; $i < $rowcount1; $i++) { 
 				$crn = mysql_result($result1, $i,"CRN");
-				$title = mysql_result($result1, $i,"CRN");
+				$title = mysql_result($result1, $i,"Title");
+				$code = mysql_result($result1, $i,"Code");
+				$letter = mysql_result($result1, $i,"Letter");
+				$name = mysql_result($result1, $i,"Name");
+				$day = mysql_result($result1, $i,"Day");
+				$start_time = mysql_result($result1, $i,"Start_Time");
+				$end_time = mysql_result($result1, $i,"End_Time");
+				$location = mysql_result($result1, $i,"Location");
+				
+				//add to table
+				$string2.='<tr>
+					<td><input type="checkbox" name="crn"value="'.$crn.'"></td>
+					<td>$crn</td>
+					<td>$title</td>
+					<td>$code</td>
+					<td>$letter</td>
+					<td>$name</td>
+					<td>$day</td>
+					<td>$start_time</td>
+					<td>$end_time</td>
+					<td>$location/td>
+					<td><select name="">
+						<option value="R">Register</option>
+						<option value="A">Audit</option>
+						<option value="P">Pass/Fail</option>
+					</select></td>
+				</tr>';
 			}
 		}
 

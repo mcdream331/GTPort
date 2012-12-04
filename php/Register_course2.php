@@ -1,6 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-
 
 //establish connection
 $link = mysql_connect("localhost", "root", "root");
