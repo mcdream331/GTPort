@@ -38,6 +38,7 @@ $title = $row2['Title'];
 $sql_query3 = "SELECT Letter FROM Section WHERE Title = '$title'";
 $result3 = $mysql_query($sql_query3) or die(mysql_error());
 echo "<select id = 'section'>"
+echo "</select>";
 }
 echo "</select>";
 
