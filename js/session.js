@@ -26,7 +26,18 @@ function userTypeIdentify(un) {
 	//
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log("usertype:" + xmlhttp.responseText);
+			username = un;
+			//console.log("usertype:" + xmlhttp.responseText);
+			if(xmlhttp.responseText=="admin"){
+				location.href='admin_report.html';
+				console.log(username);
+			}
+			else if(xmlhttp.responseText=="student"){
+				location.href='student_service.html';
+			}
+			else{
+				location.href='faculty_service.html';
+			}
 		}
 	}
 	xmlhttp.open("GET", "http://localhost/login_2.php?un=" + un , true);
