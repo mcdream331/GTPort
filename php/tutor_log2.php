@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-$dateTime = $_GET("")
-$tutee_username = $_GET("")
+$dateTime = $_GET("");
+$tutee_username = $_GET("");
 
 //establish connection
 $link = mysql_connect("localhost", "root", "root");
