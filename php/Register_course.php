@@ -84,10 +84,6 @@ session_start();
 		}
 
 		$string2.="</table>";
-		$string2.='<input type="Submit" value="Next"/>
-			<input type="button" value="Back" onclick="location.href=\'student_service.php\'" /></form>';
-			
-		echo $string2;
 		//close connection
 		mysql_close($link);
 		?>
