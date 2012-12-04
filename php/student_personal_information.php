@@ -3,6 +3,9 @@ session_start();
 ?>
 <html>
 	<body>
+		<h1>
+			GTPort
+		</h1>
 		<?php
 		$link = mysql_connect("localhost", "root", "root");
 		if (!$link) {
@@ -35,21 +38,21 @@ session_start();
 			$email = $row["Email_Id"];
 			//echo "email:".$email."<br>";
 		}
-		$string.="<form action='login_1.php' method='post'><table>";
+		$string.="<form action='student_personal_information_1.php' method='post'><table>";
 		$string.="<tr><td>Name</td>
-					<td><input type='text' name='username' value=\"$name\"/></td></tr>";
+					<td><input type='text' name='name' value=\"$name\"/></td></tr>";
 		$string.="<tr><td>DOB</td>
-					<td><input type='text' name='username' value='$dob'/></td></tr>";
+					<td><input type='text' name='dob' value='$dob'/></td></tr>";
 		$string.="<tr><td>Gender</td>
-					<td><input type='text' name='username' value='$gender'/></td></tr>";
+					<td><input type='text' name='gender' value='$gender'/></td></tr>";
 		$string.="<tr><td>Address</td>
-					<td><input type='text' name='username' value=\"$address\"/></td></tr>";
+					<td><input type='text' name='address' value=\"$address\"/></td></tr>";
 		$string.="<tr><td>Permenant Address</td>
-					<td><input type='text' name='username' value=\"$permenant_address\"/></td></tr>";
+					<td><input type='text' name='permenant_address' value=\"$permenant_address\"/></td></tr>";
 		$string.="<tr><td>Contact Number</td>
-					<td><input type='text' name='username' value='$contact_number'/></td></tr>";
+					<td><input type='text' name='contact_number' value='$contact_number'/></td></tr>";
 		$string.="<tr><td>Email</td>
-					<td><input type='text' name='username' value='$email'/></td></tr>";
+					<td><input type='text' name='email' value='$email'/></td></tr>";
 		//View Available Tutor Course
 		//Populate Drop Down for tutor course
 		$sql_query1 = "	SELECT Code 
@@ -83,20 +86,20 @@ session_start();
 		}
 		$string.="<tr><td>Major</td>
 				<td><select name='major'>
-				<option value='AE'";if($major=="AE"){$string.=" selected=selected";}$string.=">Aerospace Engineering</option>
-				<option value='BIO'";if($major=="BIO"){$string.=" selected=selected";}$string.=">Biology</option>
-				<option value='BE'";if($major=="BE"){$string.=" selected=selected";}$string.=">Biological Engineering</option>
-				<option value='CS'";if($major=="CS"){$string.=" selected=selected";}$string.=">Computer Science</option>
-				<option value='ECE'";if($major=="ECE"){$string.=" selected=selected";}$string.=">Electrical & Computer Engineering</option>
+				<option value='AE'";if($major=="AE"){$string.=" selected";}$string.=">Aerospace Engineering</option>
+				<option value='BIO'";if($major=="BIO"){$string.=" selected";}$string.=">Biology</option>
+				<option value='BE'";if($major=="BE"){$string.=" selected";}$string.=">Biological Engineering</option>
+				<option value='CS'";if($major=="CS"){$string.=" selected";}$string.=">Computer Science</option>
+				<option value='ECE'";if($major=="ECE"){$string.=" selected";}$string.=">Electrical & Computer Engineering</option>
 				</select></td></tr>";
 		$string.="<tr><td>Degree</td>
 				<td><select name='degree'>
-				<option value='BS'";if($degree=="BS"){$string.=" selected=selected";}$string.=">B.S.</option>
-				<option value='MS'";if($degree=="MS"){$string.=" selected=selected";}$string.=">M.S.</option>
-				<option value='PHD'";if($degree=="PHD"){$string.=" selected=selected";}$string.=">PhD</option>
+				<option value='BS'";if($degree=="BS"){$string.=" selected";}$string.=">B.S.</option>
+				<option value='MS'";if($degree=="MS"){$string.=" selected";}$string.=">M.S.</option>
+				<option value='PHD'";if($degree=="PHD"){$string.=" selected";}$string.=">PhD</option>
 				</select></td></tr>";
 		//Previous Education History
-		$string.="<tr><td>Previous Education<td><tr>";
+		$string.="<tr><td>Previous Education</td></tr>";
 		$sql_query3 = "	SELECT * 
 						FROM Education_History 
 						WHERE Student_Username='$username'";
@@ -108,7 +111,7 @@ session_start();
 			
 			while ($i < $rowcount3) {
 				$j = $i+1;
-				$string.="<tr><td>	Histroy$j</td></tr><tr>";
+				$string.="<tr><td>	Histroy$j</td></tr>";
 				$string.="<tr><td>Institute Name</td>
 					<td><input type='text' name='institute_name$i' value=\"".mysql_result($result3, $i, 'Name_of_School')."\"/></td></tr>";
 				$string.="<tr><td>Major</td>
@@ -125,7 +128,7 @@ session_start();
 		}
 		while($i<3){
 			$j = $i+1;
-			$string.="<tr><td>	Histroy$j</td></tr><tr>";
+			$string.="<tr><td>	Histroy$j</td></tr>";
 			$string.="<tr><td>Institute Name</td>
 					<td><input type='text' name='institute_name$i'/></td></tr>";
 			$string.="<tr><td>Major</td>
