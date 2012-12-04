@@ -42,24 +42,24 @@ session_start();
 		
 		//Update Student Information
 		$sql_query1 = "UPDATE	Student
-						SET		Major = $major, Degree = $degree
-						WHERE	Username = $Username;";
+						SET		Major = '$major', Degree = '$degree'
+						WHERE	Username = '$username';";
 		
 		//Add Previous Education
-		$sql_query2 = "	INSERT INTO Education_History (Student_Username, Name_of_School, Year_Of_Grad, Degree, Major, GPA) 
-						VALUES ('$username', '$name_of_school', '$Year_Of_Grade', '$Degree', '$Major', '$GPA')";
-		mysql_query($sql_query2) or die(mysql_error());
-
-		//Apply for Tutor Course
-		$sql_query7 = "INSERT INTO Apply_Tutor (Student_Username, Title) VALUES ('$username', '$Title')";
-		mysql_query($sql_query7) or die(mysql_error());
-
-		//POST History Information from Input
-		$name_of_school = $_POST["name_of_school"];
-		$Year_Of_Grade = $_POST["Year_Of_Grade"];
-		$Degree = $_POST["Degree"];
-		$major = $_POST["major"];
-		$GPA = $_POST["GPA"];
+		// $sql_query2 = "	INSERT INTO Education_History (Student_Username, Name_of_School, Year_Of_Grad, Degree, Major, GPA) 
+						// VALUES ('$username', '$name_of_school', '$Year_Of_Grade', '$Degree', '$Major', '$GPA')";
+		// mysql_query($sql_query2) or die(mysql_error());
+// 
+		// //Apply for Tutor Course
+		// $sql_query7 = "INSERT INTO Apply_Tutor (Student_Username, Title) VALUES ('$username', '$Title')";
+		// mysql_query($sql_query7) or die(mysql_error());
+// 
+		// //POST History Information from Input
+		// $name_of_school = $_POST["name_of_school"];
+		// $Year_Of_Grade = $_POST["Year_Of_Grade"];
+		// $Degree = $_POST["Degree"];
+		// $major = $_POST["major"];
+		// $GPA = $_POST["GPA"];
 		
 		//Close Connection
 		mysql_close($link);

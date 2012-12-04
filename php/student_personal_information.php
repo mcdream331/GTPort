@@ -84,20 +84,84 @@ session_start();
 			$major = $row2["Major"];
 			//echo "Major:".$major;
 		}
+		//major
+		
+		if($major=="AE"){
 		$string.="<tr><td>Major</td>
 				<td><select name='major'>
-				<option value='AE'";if($major=="AE"){$string.=" selected";}$string.=">Aerospace Engineering</option>
-				<option value='BIO'";if($major=="BIO"){$string.=" selected";}$string.=">Biology</option>
-				<option value='BE'";if($major=="BE"){$string.=" selected";}$string.=">Biological Engineering</option>
-				<option value='CS'";if($major=="CS"){$string.=" selected";}$string.=">Computer Science</option>
-				<option value='ECE'";if($major=="ECE"){$string.=" selected";}$string.=">Electrical & Computer Engineering</option>
+				<option value='AE'>Aerospace Engineering</option>
+				<option value='BIO'>Biology</option>
+				<option value='BE'>Biological Engineering</option>
+				<option value='CS'>Computer Science</option>
+				<option value='ECE'>Electrical & Computer Engineering</option>
 				</select></td></tr>";
-		$string.="<tr><td>Degree</td>
+		}
+		elseif ($major=="BIO") {
+			$string.="<tr><td>Major</td>
+				<td><select name='major'>
+				<option value='BIO'>Biology</option>
+				<option value='AE'>Aerospace Engineering</option>
+				<option value='BE'>Biological Engineering</option>
+				<option value='CS'>Computer Science</option>
+				<option value='ECE'>Electrical & Computer Engineering</option>
+				</select></td></tr>";
+		}
+		elseif ($major=="BE") {
+			$string.="<tr><td>Major</td>
+				<td><select name='major'>
+				<option value='BE'>Biological Engineering</option>
+				<option value='BIO'>Biology</option>
+				<option value='AE'>Aerospace Engineering</option>
+				<option value='CS'>Computer Science</option>
+				<option value='ECE'>Electrical & Computer Engineering</option>
+				</select></td></tr>";
+		}
+		elseif ($major=="CS") {
+			$string.="<tr><td>Major</td>
+				<td><select name='major'>
+				<option value='CS'>Computer Science</option>
+				<option value='BIO'>Biology</option>
+				<option value='AE'>Aerospace Engineering</option>
+				<option value='BE'>Biological Engineering</option>
+				<option value='ECE'>Electrical & Computer Engineering</option>
+				</select></td></tr>";
+		}
+		elseif ($major=="ECE") {
+			$string.="<tr><td>Major</td>
+				<td><select name='major'>
+				<option value='ECE'>Electrical & Computer Engineering</option>
+				<option value='BIO'>Biology</option>
+				<option value='AE'>Aerospace Engineering</option>
+				<option value='BE'>Biological Engineering</option>
+				<option value='CS'>Computer Science</option>
+				</select></td></tr>";
+		}
+		
+		//degree
+		if($degree=="BS"){
+			$string.="<tr><td>Degree</td>
 				<td><select name='degree'>
 				<option value='BS'";if($degree=="BS"){$string.=" selected";}$string.=">B.S.</option>
 				<option value='MS'";if($degree=="MS"){$string.=" selected";}$string.=">M.S.</option>
 				<option value='PHD'";if($degree=="PHD"){$string.=" selected";}$string.=">PhD</option>
 				</select></td></tr>";
+		}
+		if($degree=="MS"){
+			$string.="<tr><td>Degree</td>
+				<td><select name='degree'>
+				<option value='MS'";if($degree=="MS"){$string.=" selected";}$string.=">M.S.</option>
+				<option value='BS'";if($degree=="BS"){$string.=" selected";}$string.=">B.S.</option>
+				<option value='PHD'";if($degree=="PHD"){$string.=" selected";}$string.=">PhD</option>
+				</select></td></tr>";
+		}
+		if($degree=="PHD"){
+			$string.="<tr><td>Degree</td>
+				<td><select name='degree'>
+				<option value='PHD'";if($degree=="PHD"){$string.=" selected";}$string.=">PhD</option>
+				<option value='MS'";if($degree=="MS"){$string.=" selected";}$string.=">M.S.</option>
+				<option value='BS'";if($degree=="BS"){$string.=" selected";}$string.=">B.S.</option>
+				</select></td></tr>";
+		}
 		//Previous Education History
 		$string.="<tr><td>Previous Education</td></tr>";
 		$sql_query3 = "	SELECT * 
