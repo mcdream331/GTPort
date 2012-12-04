@@ -1,9 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$username = $_GET['un'];
-$password = $_GET['pw'];
-$user_type = $_GET['ut'];
 //establish connection
 $link = mysql_connect("localhost", "root", "root");
 if (!$link) {
