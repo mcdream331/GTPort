@@ -9,7 +9,7 @@ mysql_select_db(cs4400) or die("Unable to select database");
 $username = $_GET("username");
 
 //View Personal Information
-$sql_query = "SELECT Name, DOB, Gender, Address, Permanent_Address, Contact_Number, Email_Id FROM Regular_User WHERE Username = $Username";
+$sql_query = "SELECT Name, DOB, Gender, Address, Permanent_Address, Contact_Number, Email_Id FROM Regular_User WHERE Username = '$username'";
 $result = mysql_query($sql_query) or die(mysql_error());
 while ($row = mysql_fetch_array($result)) {
 	$name = $row["Name"];
@@ -22,7 +22,7 @@ while ($row = mysql_fetch_array($result)) {
 }
 
 //View Department Information
-$sql_query1 = "SELECT Position, Name FROM Faculty NATURAL JOIN Department WHERE Username = $username";
+$sql_query1 = "SELECT Position, Name FROM Faculty NATURAL JOIN Department WHERE Username = '$username'";
 $result1 = mysql_query($sql_query1) or die(mysql_error());
 while ($row1 = mysql_fetch_array($result1)) {
 	$positon = $row1["Position"];
@@ -30,9 +30,12 @@ while ($row1 = mysql_fetch_array($result1)) {
 }
 
 //Populate Drop Down for Course and Section
-$sql_query2 = "SELECT Title FROM Department_Course as C, Department as D WHERE D.Name = $Department_Name AND D.Dept_Id = C.Dept_Id";
-$sql_query3 = "SELECT Letter FROM Section WHERE Title = $Title";
+$sql_query2 = "SELECT Title FROM Department_Course as C, Department as D WHERE D.Name = '$department' AND D.Dept_Id = C.Dept_Id";
 $result2 = $mysql_query($sql_query2) or die(mysql_error());
+$row2 = mysql_fetch_array($result2);
+$title = $row2['Title'];
+
+$sql_query3 = "SELECT Letter FROM Section WHERE Title = $title";
 $result3 = $mysql_query($sql_query3) or die(mysql_error());
 echo "$result2";
 echo "$result3";
