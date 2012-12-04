@@ -66,7 +66,7 @@ session_start();
 				
 				//add to table
 				$string2.='<tr>
-					<td><input type="checkbox" name="crn"value="'.$crn.'"></td>
+					<td><input type="checkbox" name="crn[]"value="'.$crn.' '.$i.'"></td>
 					<td>'.$crn.'</td>
 					<td>'.$title.'</td>
 					<td>'.$code.'</td>
@@ -76,7 +76,7 @@ session_start();
 					<td>'.$start_time.'</td>
 					<td>'.$end_time.'</td>
 					<td>'.$location.'</td>
-					<td><select name="gradingMode">
+					<td><select name="gradingMode'.$i.'">
 						<option value="R">Register</option>
 						<option value="A">Audit</option>
 						<option value="P">Pass/Fail</option>
