@@ -11,12 +11,10 @@
 		<meta name="description" content="Homepage Screen" />
 		<meta name="author" content="MENGYU ZHANG" />
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-
 		<link rel="shortcut icon" href="favicon.ico" />
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 
-		<link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/Georgia_Tech_jQueryUI_Theme/jquery-ui-1.9.1.custom.css" />
 		<link rel="stylesheet" type="text/css" href="960_css/960_24_col.css" />
 		<link rel="stylesheet" type="text/css" href="css/app.css" />
 
@@ -26,7 +24,8 @@
 			$(function() {
 				$("input[type=button]").button().hide();
 			});
-		</script>
+		</script> -->
+		<script type="text/javascript" src="js/session.js"></script>
 		<style type="text/css">
 			img {
 				position: absolute
@@ -37,10 +36,10 @@
 		</style>
 	</head>
 
-	<body>
+	<body onload="userTypeIdentify()">
 		<div class="container_24">
 			<header class="ui-widget ui-widget-header ui-corner-top">
-				<img src="georgia_tech_yellow_jackets.jpeg"/>
+				<!-- <img src="georgia_tech_yellow_jackets.jpeg"/> -->
 				<h1>Homepage</h1>
 			</header>
 			<div class="ui-widget ui-widget-content ui-corner-bottom">
