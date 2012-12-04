@@ -20,6 +20,9 @@ session_start();
 		$sql_query = "SELECT Tutor_Username FROM Tutor WHERE Tutor = $tutorUsername";
 		$istutor = mysql_query($sql_query) or die('Select course title error' . mysql_error());
 		
+		///////////////////$ = $_POST[""]   tilte?? tutorusername from checkbox
+		
+		
 		$rowcount = mysql_num_rows($istutor);
 		if ($rowcount == 0) {
 			$sql_query1 = "INSERT INTO        Tutor (Tutor_Username) VALUES ($tutorUsername)";
