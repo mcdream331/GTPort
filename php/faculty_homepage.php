@@ -20,9 +20,9 @@ session_start();
 		$result = mysql_query($sql_query) or die('error: ' . mysql_error());
 		$nRow = mysql_num_rows($result);
 		if ($nRow == 0) {
-			echo "Please enter information before using service!<br><input type='button' value='Personal Information' onclick='location.href=\"faculty_personal_information.php\"'/>";
+			echo "Please enter information before using service!<br><input type='button' value='Personal Information' onclick='location.href=\"Faculty_personal_information.php\"'/>";
 		} else {
-			echo "<input type='button' value='Personal Information' onclick='location.href=\"student_personal_information.php\"'/><br><input type='button' value='Student Service' onclick='location.href=\"faculty_service.php\"'/>";
+			echo "<input type='button' value='Personal Information' onclick='location.href=\"Faculty_personal_information.php\"'/><br><input type='button' value='Faculty Service' onclick='location.href=\"faculty_service.php\"'/>";
 		}
 		//close connection
 		mysql_close($link);

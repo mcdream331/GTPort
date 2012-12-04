@@ -14,8 +14,9 @@ session_start();
 		mysql_select_db (cs4400) or die ("Unable to select database");
 		
 		//Get username
-		$username = $_SESSION("user");
-		//echo $username;
+		$username = $_SESSION["user"];
+		
+		echo $username;
 		$string = '';
 		//View Personal Information
 		$sql_query = "	SELECT Name, DOB, Gender, Address, Permanent_Address, Contact_Number, Email_Id 
@@ -50,12 +51,13 @@ session_start();
 		//View Department Information
 		$sql_query1 = "	SELECT Position, Name 
 						FROM Faculty NATURAL JOIN Department 
-						WHERE Username = '$username'";
+						WHERE Instructor_Username = '$username'";
 		$result1 = mysql_query($sql_query1) or die(mysql_error());
 		while ($row1 = mysql_fetch_array($result1)) {
 			$positon = $row1["Position"];
 			$department = $row1["Name"];
 		}
+		
 		if($major=="AE"){
 		$string.="<tr><td>Major</td>
 				<td><select name='major'>
@@ -106,6 +108,7 @@ session_start();
 				<option value='CS'>Computer Science</option>
 				</select></td></tr>";
 		}
+		echo $string;
 				
 		if($degree=="Professor"){
 			$string.="<tr><td>Degree</td>
@@ -130,23 +133,23 @@ session_start();
 				<option value='MS'";if($degree=="Associate Professor"){$string.=" selected";}$string.=">Associate Professor.</option>
 				<option value='BS'";if($degree=="Assistant Professor"){$string.=" selected";}$string.=">Assistant Professor</option>
 				</select></td></tr>";
-				
+		}
 		
 		//Populate Drop Down for Course and Section
 		$sql_query2 = "	SELECT Title 
 						FROM Department_Course as C, Department as D 
 						WHERE D.Name = '$department' AND D.Dept_Id = 'C.Dept_Id'";
 		$result2 = $mysql_query($sql_query2) or die(mysql_error());
-		while($row2 = mysql_fetch_array($result2)){
-		$title = $row2['Title'];
-		$sql_query3 = "SELECT Letter FROM Section WHERE Title = '$title'";
-		$result3 = $mysql_query($sql_query3) or die(mysql_error());
-		$string.=""
-			while($row3 = mysql_fetch_arrary($result3){
-			$section = $row3['Section'];
-			$string.="	<tr><td>Section</td>
-						<tr><select name = 'Section'>"
-		};
+		// while($row2 = mysql_fetch_array($result2)){
+		// $title = $row2['Title'];
+		// $sql_query3 = "SELECT Letter FROM Section WHERE Title = '$title'";
+		// $result3 = $mysql_query($sql_query3) or die(mysql_error());
+		// $string.="";
+			// while($row3 = mysql_fetch_arrary($result3)){
+			// $section = $row3['Section'];
+			// $string.="	<tr><td>Section</td>
+						// <tr><select name = 'Section'>";}
+		// };
 		
 		//View Research Interest
 		$sql_query4 = "	SELECT Research_Interests
@@ -155,8 +158,8 @@ session_start();
 		$result4 = $mysql_query($sql_query4) or die (mysql_error());
 		$research_interest = $mysql_fetch_array($result4);
 		$string.="<tr><td>Research Interests</td>
-						<td><input type='text' name='research_interest' value=\"$research_interest\"/"></td></tr>;
-		echo $string;
+						<td><input type='text' name='research_interest' value=\"$research_interest\"/></td></tr>";
+		
 		
 		
 		mysql_close ($link);
