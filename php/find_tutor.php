@@ -21,6 +21,7 @@ session_start();
 			</table>
 
 			<input type="Submit" value="Search"/>
+			<input type='button' value='Back' onclick='location.href="student_service.php"'/>
 		</form>
 	</body>
 </html>
