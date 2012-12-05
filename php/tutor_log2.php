@@ -8,7 +8,7 @@ session_start();
 		</h1>
 
 		<?php
-		header("Access-Control-Allow-Origin: *");
+
 		$username = $_SESSION['user']
 		$code = $_POST["Course Code"];
 		$tutee_username = $_POST("Student Name");

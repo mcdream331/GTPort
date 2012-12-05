@@ -7,7 +7,6 @@ session_start();
 			GTPort
 		</h1>
 		<?php
-		header("Access-Control-Allow-Origin: *");
 
 		//establish connection
 		$link = mysql_connect("localhost", "root", "root");
@@ -37,6 +36,7 @@ session_start();
 		$string.="<td><select name='Course Code'>";
 		foreach ($code as $onecode) {
 				$string.="<option value='$onecode'>$onecode</option>";
+		}
 		$string.="</select></td></tr>";
 				
 		$string.="<tr><td>Student ID</td>
