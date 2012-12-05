@@ -34,8 +34,8 @@ session_start();
 				
 		$string.="<tr><td>Course Code</td>";
 		
-		$string.="<td><select name='Course Code'>"
-		Foreach ($code as $onecode) {
+		$string.="<td><select name='Course Code'>";
+		foreach ($code as $onecode) {
 				$string.="<option value='$onecode'>$onecode</option>";
 		$string.="</select></td></tr>";
 				
