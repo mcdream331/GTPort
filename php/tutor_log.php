@@ -17,36 +17,36 @@ session_start();
 		
 		$username = $_SESSION['user'];
 		
-		//insert user
-		$sql_query = "SELECT     Name 
-					FROM     Regular_User 
-					Where         Username = '$username'";
-		$tutorname = mysql_query($sql_query) or die('Select course title error' . mysql_error());
-
-		$sql_query1 = "SELECT     Code FROM     Tutor_Course NATURAL JOIN Course_Code Where         Tutor_Username = '$username'";
-		$code = mysql_query($sql_query1) or die('select tutor name error' . mysql_error());
-
-		$string.="<form action='assign_tutor1.php' method='post'><table>";
-		$id = "";
-		$tuteename = "";
+		//get tutor name
+		$string.="<form action='tutor_log1.php' method='post'><table>";
 		
+		$sql_query = "SELECT     Name FROM     Regular_User Where         Username = '$username'";
+		$result = mysql_query($sql_query) or die('Select course title error' . mysql_error());
+		$tutorname =  mysql_result($result, 0, 'Name');
+		//echo $tutorname;
 		$string.="<tr><td>Tutor Name</td>
-				<td><input type='int' name='Tutor Name:' value=\"$tutorname\"/></td></tr>";
-				
-		$string.="<tr><td>Course Code</td>";
+				<td><input type='text' name='tutor_name' value=\"$tutorname\"/></td></tr>";
 		
-		$string.="<td><select name='Course Code'>";
-		foreach ($code as $onecode) {
-				$string.="<option value='$onecode'>$onecode</option>";
+		//get course code
+		$string.="<tr><td>Course Code</td><td><select name='course_code'>";
+		$sql_query1 = "SELECT     Code FROM     Tutor_Course NATURAL JOIN Course_Code Where         Tutor_Username = '$username'";
+		$result1 = mysql_query($sql_query1) or die('select tutor name error' . mysql_error());
+		while ($row1 = mysql_fetch_array($result1)) {
+			$string.="<option value='".$row1['Code']."'>".$row1['Code']."</option>";
 		}
 		$string.="</select></td></tr>";
-				
+		
+		//enter student id
 		$string.="<tr><td>Student ID</td>
-				<td><input type='int' name='student ID:' value=\"$id\"/></td></tr>";
-		$string.="<tr><td>Student Name</td><td><input type='text' name='Student Name' value='$tuteename'/></td></tr>";
+				<td><input type='int' name='student_id'/></td><td><input type='Submit' value='Get Student Name'/></td></tr>";
+		
+		$string.="<tr><td>Student Name</td><td><input type='text' name='student_name'/></td></tr>";
 		//close connection
 		mysql_close($link);
+		$string.='</table>';
+		$string.="<input type='button' value='Home' onclick='location.href=\"student_homepage.php\"' /></form>";
 		
+		echo $string;
 		?>
 	</body>
 </html>
