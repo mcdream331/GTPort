@@ -25,17 +25,26 @@ session_start();
 		$sql_query1 = "SELECT     Code FROM     Tutor_Course NATURAL JOIN Course_Code Where         Tutor_Username = $username";
 		$code = mysql_query($sql_query1) or die('select tutor name error' . mysql_error());
 
-		$result = array($tutorname, $code);
-
-		$string.="<tr><td>Name</td>
+		$string.="<form action='assign_tutor1.php' method='post'><table>";
+		$id = "";
+		$tuteename = "";
+		
+		$string.="<tr><td>Tutor Name</td>
+				<td><input type='int' name='Tutor Name:' value=\"$tutorname\"/></td></tr>";
+				
+		$string.="<tr><td>Course Code</td>";
+		
+		$string.="<td><select name='Course Code'>"
+		Foreach ($code as $onecode) {
+				$string.="<option value='$onecode'>$onecode</option>";
+		$string.="</select></td></tr>";
+				
+		$string.="<tr><td>Student ID</td>
 				<td><input type='int' name='student ID:' value=\"$id\"/></td></tr>";
-		$string.="<tr><td>DOB</td>
-				<td><input type='text' name='Student Name' value='$tuteename'/></td></tr>";
-		$string.="<tr><td>Gender</td>";
+		$string.="<tr><td>Student Name</td><td><input type='text' name='Student Name' value='$tuteename'/></td></tr>";
 		//close connection
 		mysql_close($link);
-
-		echo $result;
+		
 		?>
 	</body>
 </html>
