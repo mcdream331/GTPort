@@ -18,14 +18,15 @@ session_start();
 		
 		$username = $_SESSION['user'];
 		$sql_query3 = "SELECT DISTINCT Title FROM Section WHERE Instructor_Username = $username";
-		$title = mysql_query($sql_query3) or die('Select course title error' . mysql_error());
-		
+		$result = mysql_query($sql_query3) or die('Select course title error' . mysql_error());
+		$title =  mysql_result($result, 0, 'Title')
 		Foreach ($_POST["tutors"] as $checkedNames) {
 		
 		//select tutor and check
 			$sql_query = "SELECT Username FROM Regular_User WHERE Name = $checkedNames";
-			$tutorUsername = mysql_query($sql_query) or die('Select course title error' . mysql_error());
-		
+			$result2 = mysql_query($sql_query) or die('Select course title error' . mysql_error());
+			$tutorUsername = mysql_result($result2, 0, 'Username')
+			
 			$rowcount = mysql_num_rows($tutorUsername);
 			if ($rowcount == 0) {
 				$sql_query1 = "INSERT INTO        Tutor (Tutor_Username) VALUES ($tutorUsername)";
