@@ -84,14 +84,14 @@ session_start();
 			}
 			$i += 1;
 		}
-
+		//echo $CurrentIndex;
 		for ($i=0; $i < $CurrentIndex; $i++) {
 			//echo $student_report[$i][instructor]; 
 			$sql_query2 = "SELECT Name
 							FROM Regular_User
-							WHERE Username='$student_report[$i][instructor]'";
+							WHERE Username='".$student_report[$i][instructor]."'";
 			$result2 = mysql_query($sql_query2) or die("find name error".mysql_error());
-			echo mysql_result($result2, 0,'Name');
+			//echo mysql_result($result2, 0,'Name');
 			$student_report[$i][instructor] = mysql_result($result2, 0,"Name");
 		}
 		
@@ -99,7 +99,7 @@ session_start();
 		for ($j = 0; $j < $CurrentIndex; $j++) {
 			$sql_query3 = "SELECT Code
 						FROM Course_Code
-						WHERE Title = '$student_report[$j][title]'";
+						WHERE Title = '".$student_report[$j][title]."'";
 			$result3 = mysql_query($sql_query3) or die('query3 error' . mysql_error());
 			$rowcount3 = mysql_num_rows($result3);
 			if ($rowcount3 > 1) {
