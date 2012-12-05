@@ -7,8 +7,6 @@ session_start();
 			GTPort
 		</h1>
 		<?php
-		$courseCode = $_GET['courseCode'];
-
 		//establish connection
 		$link = mysql_connect("localhost", "root", "root");
 		if (!$link) {
@@ -23,29 +21,38 @@ session_start();
 					<th>Course Name</th>
 					<th>Average Grade</th>
 				</tr>
-			</table>";
-		echo $string;
+			";
+		//echo $string;
 
-		$username = $GET_['username'];
 
-		$sql_query = "CREATE VIEW NameOfInstructor
-				AS SELECT 	Name
-				FROM 	Regular_User
-				WHERE 	Regular_User.Username IN
-							(SELECT 	Instructor_Username
-							FROM 	Section
-							WHERE 	CRN IN (SELECT 	CRN
-			        			   FROM 	Student_Section
-			        			   WHERE 	Student_Username=$Username));";
-
-		$queryresult1 = mysql_query($sql_query) or die('error: ' . mysql_error());
-
-		$sql_query2 = "CREATE VIEW NameAndCourseCode
-				AS SELECT 	NameOfInstructor.Name, Course_Code.Title, Course_Code.Code, Section.CRN
-				FROM  	((NameOfInstructor NATURAL JOIN  Regular_User) JOIN Section ON Regular_User.Username=Section.Instructor_Username) NATURAL JOIN Course_Code
-				ORDER BY 	NameOfInstructor.Name;";
-
-		$queryresult2 = mysql_query($sql_query2) or die('error: ' . mysql_error());
+		// $sql_query = "CREATE VIEW NameOfInstructor
+				// AS SELECT 	Name
+				// FROM 	Regular_User
+				// WHERE 	Regular_User.Username IN
+							// (SELECT 	Instructor_Username
+							// FROM 	Section
+							// WHERE 	CRN IN (SELECT 	CRN
+			        			   // FROM 	Student_Section
+			        			   // WHERE 	Student_Username=$Username));";
+// 
+		// $queryresult1 = mysql_query($sql_query) or die('error: ' . mysql_error());
+// 
+		// $sql_query2 = "CREATE VIEW NameAndCourseCode
+				// AS SELECT 	NameOfInstructor.Name, Course_Code.Title, Course_Code.Code, Section.CRN
+				// FROM  	((NameOfInstructor NATURAL JOIN  Regular_User) JOIN Section ON Regular_User.Username=Section.Instructor_Username) NATURAL JOIN Course_Code
+				// ORDER BY 	NameOfInstructor.Name;";
+// 
+		// $queryresult2 = mysql_query($sql_query2) or die('error: ' . mysql_error());
+		$sql_query = "SELECT Name, Instructor_Username
+						FROM Faculty JOIN Regular_User ON Instructor_Username = Username";
+		$queryresult = mysql_query($sql_query) or die('error ' . mysql_error());
+		$rowcount = mysql_num_rows($queryresult);
+		for ($i=0; $i < $rowcount ; $i++) { 
+			$instructor[$i][name] = mysql_result($result, $i,'Name');
+			$instructor[$i][username] = mysql_result($result, $i,'Instructor_Username');
+			echo $instructor[$i][name];
+			echo $instructor[$i][username];
+		}
 
 		$sql_query3 = "SELECT 	NameAndCourseCode.NameOfInstructor.Name, NameAndCourseCode.Code, NameAndCourseCode.Course_Code.Title, Section.Grade, COUNT(*), Section.CRN
 				FROM 	NameAndCourseCode AS N NATURAL JOIN Student_Section AS S
@@ -105,7 +112,6 @@ session_start();
 		//close connection
 		mysql_close($link);
 
-		echo "succeed";
 	?>
 	</body>
 </html>
