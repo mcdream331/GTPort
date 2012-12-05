@@ -8,114 +8,97 @@
 			die('Could not connect: ' . mysql_error());
 		}
 		mysql_select_db(cs4400) or die("Unable to select database");
-		
+
 		$string = "<table border='1'>
 				<tr>
 					<th>Course Code</th>
 					<th>Course Name</th>
 					<th>Average Grade</th>
 				</tr>
-			</table>";
-		
-		echo $string;
-		
-		$sql_query = "SELECT	DISTINCT Code, Title
-						FROM		(Course_Code NATURAL JOIN Section) NATURAL JOIN Student_Section
-						WHERE	Grade_Mode = ‘R’ AND Grade IS NOT NULL
-						GROUP BY 	Code;";
+			";
 
-		$sql_query1 = "SELECT Title, Grade, COUNT(*)
+		$sql_query = "SELECT Title, Grade, COUNT(*)
 						FROM   	(SELECT *
         						FROM (Course_Code NATURAL JOIN Section) NATURAL JOIN Student_Section
         						WHERE Grade_Mode = 'R' AND Grade IS NOT NULL
-        				GROUP BY Title, Student_Username) as T
+        						GROUP BY Title, Student_Username) as T
 						GROUP BY T.Title, T.Grade";
 
 		$queryresult = mysql_query($sql_query) or die('error ' . mysql_error());
-
-		$query1result = mysql_query($sql_query1) or die('error ' . mysql_error());
-
-		$rowcount = mysql_result($queryresult);
-		$myResult;
-		$i = 0;
-		$TitleArray = array();
-		$CodeArray = array();
-		$NotAssign = 0;
-		$AssignIndex;
-		$CurrentIndex = 0;
-		$GradeArray = array();
-
-		while ($i < $roucount) {
-			if ($i != 0) {
-				for ($j = 0; $j < i; $j++) {
-					if (mysql_result($queryresult, $i, "Title") == mysql_result($queryresult, $j, "Title")) {
-						$AssignIndex = $j;
-						$j = $i;
-						$NotAssign = 1;
-					}
-				}
-			}
-			if ($NotAssign == 1) {
-				$CodeArray[$AssignIndex] = $CodeArray[$AssignIndex] + '/' + mysql_result($queryresult, $i, "Code");
-				$CurrentIndex = $CurrentIndex - 1;
-			} else {
-				$TitleArray[$CurrentIndex] = mysql_result($queryresult, $i, "Title");
-				$CodeArray[$CurrentIndex] = mysql_result($queryresult, $i, "Code");
-			}
-
-			$NotAssign = 0;
-			$i++;
-			$CurrentIndex++;
-		}
-		$rowcount = mysql_result($query1result);
+		$rowcount = mysql_num_rows($queryresult);
+		//echo $rowcount;
 		$i = 0;
 		$GradeSum = 0;
 		$CountSum = 0;
-		$GradeResult;
 		$CurrentIndex = 0;
 
 		while ($i < $rowcount) {
-			$Title = mysql_result($query1result, $i, "Title");
-			$Grade = mysql_result($query1result, $i, "Grade");
-			$Count = mysql_result($query1result, $i, "Count");
+			$Title[$CurrentIndex] = mysql_result($queryresult, $i, "Title");
+			//echo $Title[CurrentIndex];
+			$Grade = mysql_result($queryresult, $i, "Grade");
+			//echo $Grade;
+			$Count = mysql_result($queryresult, $i, "COUNT(*)");
+			$CountSum += mysql_result($queryresult, $i, "COUNT(*)");
+			//echo $Count;
+			//echo 'count sum:'.$CountSum.'<br>';
 
 			if ($Grade == 'A') {
-				$GradeSum = $GradeSum + 4 * mysql_result($query1result, $i, "Count");
+				$GradeSum = $GradeSum + 4 * mysql_result($queryresult, $i, "COUNT(*)");
 			} else if ($Grade == 'B') {
-				$GradeSum = $GradeSum + 3 * mysql_result($query1result, $i, "Count");
+				$GradeSum = $GradeSum + 3 * mysql_result($queryresult, $i, "COUNT(*)");
 			} else if ($Grade == 'C') {
-				$GradeSum = $GradeSum + 2 * mysql_result($query1result, $i, "Count");
+				$GradeSum = $GradeSum + 2 * mysql_result($queryresult, $i, "COUNT(*)");
 			} else if ($Grade == 'D') {
-				$GradeSum = $GradeSum + mysql_result($query1result, $i, "Count");
+				$GradeSum = $GradeSum + mysql_result($queryresult, $i, "COUNT(*)");
 			}
+
+			//echo "grade sum:".$GradeSum.'<br>';
 
 			//else Grade = F and GradeSum doesn't change
 
-			if ($Title == mysql_result($query1result, $i + 1, "Title")) {
-				$CountSum = $CountSum + mysql_result($query1result, $i, "Count");
-				//CountSum imcrements
-			} else {
-				$GradeResult = $GradeSum / $CountSum;
+			if ($Title[$CurrentIndex] != mysql_result($queryresult, $i + 1, "Title")) {
+				$GradeResult[$CurrentIndex] = round($GradeSum / $CountSum,2);
+				//echo 'grade result:' . $GradeResult[$CurrentIndex] . "<br>";
 				$GradeSum = 0;
 				$CountSum = 0;
-				$GradeArray[$CurrentIndex] = $GradeResult;
-				$CurrentIndex++;
+				$CurrentIndex += 1;
 			}
-			$i++;
-
+			$i += 1;
+		}
+		//Get Course Code
+		for ($j = 0; $j < $CurrentIndex; $j++) {
+			$sql_query1 = "SELECT Code
+						FROM Course_Code
+						WHERE Title = '$Title[$j]'";
+			$result1 = mysql_query($sql_query1) or die('query1 error' . mysql_error());
+			$rowcount1 = mysql_num_rows($result1);
+			if ($rowcount1 > 1) {
+				for ($m = 0; $m < $rowcount1; $m++) {
+					$Code[$j] .= mysql_result($result1, $m, 'Code');
+					//echo $Code[$j];
+					if ($m + 1 < $rowcount1) {
+						$Code[$j] .= '/';
+					}
+				}
+			} else {
+				$Code[$j] = mysql_result($result1, 0, 'Code');
+			}
 		}
 
-		for ($i = 0; $i < $CurrentIndex; $i++) {
-			$myResult = "<tr>
-		<td>" . $Code[$i] . "</td>
-		<td>" . $Title[$i] . "</td>
-		<td>" . $Grade[$i] . "</td>
-	</tr>";
+		//display
+		for ($n = 0; $n < $CurrentIndex; $n++) {
+			$string .= "<tr>
+		<td>" . $Code[$n] . "</td>
+		<td>" . $Title[$n] . "</td>
+		<td>" . $GradeResult[$n] . "</td>
+		</tr>";
 		}
 
+		$string .= "</table>";
 		//close connection
 		mysql_close($link);
 
-	?>
+		echo $string;
+		?>
 	</body>
 </html>
