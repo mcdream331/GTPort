@@ -24,92 +24,109 @@ session_start();
 			";
 		//echo $string;
 
-
-		// $sql_query = "CREATE VIEW NameOfInstructor
-				// AS SELECT 	Name
-				// FROM 	Regular_User
-				// WHERE 	Regular_User.Username IN
-							// (SELECT 	Instructor_Username
-							// FROM 	Section
-							// WHERE 	CRN IN (SELECT 	CRN
-			        			   // FROM 	Student_Section
-			        			   // WHERE 	Student_Username=$Username));";
+		// $sql_query = "SELECT Name, Instructor_Username
+						// FROM Faculty JOIN Regular_User ON Instructor_Username = Username";
+		// $result = mysql_query($sql_query) or die('error ' . mysql_error());
+		// $rowcount = mysql_num_rows($result);
+		// //echo $rowcount;
+		// for ($i=0; $i < $rowcount ; $i++) { 
+			// $instructor[$i][name] = mysql_result($result, $i,'Name');
+			// //echo mysql_result($result, $i,'Name');
+			// $instructor[$i][username] = mysql_result($result, $i,'Instructor_Username');
+			// // echo $instructor[$i][name];
+			// // echo $instructor[$i][username];
 // 
-		// $queryresult1 = mysql_query($sql_query) or die('error: ' . mysql_error());
-// 
-		// $sql_query2 = "CREATE VIEW NameAndCourseCode
-				// AS SELECT 	NameOfInstructor.Name, Course_Code.Title, Course_Code.Code, Section.CRN
-				// FROM  	((NameOfInstructor NATURAL JOIN  Regular_User) JOIN Section ON Regular_User.Username=Section.Instructor_Username) NATURAL JOIN Course_Code
-				// ORDER BY 	NameOfInstructor.Name;";
-// 
-		// $queryresult2 = mysql_query($sql_query2) or die('error: ' . mysql_error());
-		$sql_query = "SELECT Name, Instructor_Username
-						FROM Faculty JOIN Regular_User ON Instructor_Username = Username";
-		$queryresult = mysql_query($sql_query) or die('error ' . mysql_error());
-		$rowcount = mysql_num_rows($queryresult);
-		for ($i=0; $i < $rowcount ; $i++) { 
-			$instructor[$i][name] = mysql_result($result, $i,'Name');
-			$instructor[$i][username] = mysql_result($result, $i,'Instructor_Username');
-			echo $instructor[$i][name];
-			echo $instructor[$i][username];
-		}
+		// }
 
-		$sql_query3 = "SELECT 	NameAndCourseCode.NameOfInstructor.Name, NameAndCourseCode.Code, NameAndCourseCode.Course_Code.Title, Section.Grade, COUNT(*), Section.CRN
-				FROM 	NameAndCourseCode AS N NATURAL JOIN Student_Section AS S
-				WHERE 	S.Grade_Mode IS NOT NULL AND S.Grade_MODE = ��R��
-				ORDER BY 	Section.CRN, Grade
-				GROUP BY 	Section.CRN, Grade;";
-
-		$queryresult3 = mysql_query($sql_query3) or die('error' . mysql_error());
-
-		$rowcount = mysql_result($queryresult3);
-		$myResult;
+		$sql_query1 = "SELECT *, COUNT(*)
+						FROM Section NATURAL JOIN Student_Section
+						WHERE Grade_Mode = 'R' AND Grade IS NOT NULL
+						GROUP BY Title, Grade";
+		$result1 = mysql_query($sql_query1) or die('error' . mysql_error());
+		$rowcount1 = mysql_num_rows($result1);
+		
 		$i = 0;
-		$NameA = array();
-		$CodeA = array();
-		$TitleA = array();
-		$GradeA = array();
-		while ($i < $rowcount) {
+		$GradeSum = 0;
+		$CountSum = 0;
+		$CurrentIndex = 0;
+		
+		while ($i < $rowcount1) {
+			$student_report[$CurrentIndex][title] = mysql_result($result1, $i, "Title");
+			$student_report[$CurrentIndex][instructor] = mysql_result($result1, $i, "Instructor_Username");
+			//echo $Title[CurrentIndex];
+			$Grade = mysql_result($result1, $i, "Grade");
+			//echo $Grade;
+			$Count = mysql_result($result1, $i, "COUNT(*)");
+			$CountSum += mysql_result($result1, $i, "COUNT(*)");
+			//echo $Count;
+			//echo 'count sum:'.$CountSum.'<br>';
 
-			$Name = mysql_result($queryresult3, $i, "Name");
-			$Code = mysql_result($queryresult3, $i, "Code");
-			$Title = mysql_result($queryresult3, $i, "Title");
-			$Grade = mysql_result($queryresult3, $i, "Grade");
+			if ($Grade == 'A') {
+				$GradeSum = $GradeSum + 4 * mysql_result($result1, $i, "COUNT(*)");
+			} else if ($Grade == 'B') {
+				$GradeSum = $GradeSum + 3 * mysql_result($result1, $i, "COUNT(*)");
+			} else if ($Grade == 'C') {
+				$GradeSum = $GradeSum + 2 * mysql_result($result1, $i, "COUNT(*)");
+			} else if ($Grade == 'D') {
+				$GradeSum = $GradeSum + mysql_result($result1, $i, "COUNT(*)");
+			}
 
-			$NameA[] = $Name;
-			$CodeA[] = $Code;
-			$TitleA[] = $Title;
-			$GradeA[] = $Grade;
+			//echo "grade sum:".$GradeSum.'<br>';
 
-			$i++;
+			//else Grade = F and GradeSum doesn't change
+
+			if ($student_report[$CurrentIndex][title] != mysql_result($result1, $i + 1, "Title")) {
+				$student_report[$CurrentIndex][grade] = round($GradeSum / $CountSum,2);
+				//echo 'grade result:' . $GradeResult[$CurrentIndex] . "<br>";
+				$GradeSum = 0;
+				$CountSum = 0;
+				$CurrentIndex += 1;
+			}
+			$i += 1;
 		}
 
-		for ($i = 0; $i < $rowcount - 1; $i++) {
-			for ($j = 1; $j < $rowcount; $j++) {
-				if ($TitleA[$i] == $TitleA[$j]) {
-					// Combine Course Code and Average the two Grades
-					$CodeA[$i] = $CodeA[$i] + '/' + $CodeA[$j];
-					$GradeA[$i] = ($GradeA[$i] + $GradeA[$j]) / 2;
-					$unset($NameA[$j]);
-					$unset($CodeA[$j]);
-					$unset($TitleA[$j]);
-					$unset($GradeA[$j]);
+		for ($i=0; $i < $CurrentIndex; $i++) {
+			//echo $student_report[$i][instructor]; 
+			$sql_query2 = "SELECT Name
+							FROM Regular_User
+							WHERE Username='$student_report[$i][instructor]'";
+			$result2 = mysql_query($sql_query2) or die("find name error".mysql_error());
+			echo mysql_result($result2, 0,'Name');
+			$student_report[$i][instructor] = mysql_result($result2, 0,"Name");
+		}
+		
+		//Get Course Code
+		for ($j = 0; $j < $CurrentIndex; $j++) {
+			$sql_query3 = "SELECT Code
+						FROM Course_Code
+						WHERE Title = '$student_report[$j][title]'";
+			$result3 = mysql_query($sql_query3) or die('query3 error' . mysql_error());
+			$rowcount3 = mysql_num_rows($result3);
+			if ($rowcount3 > 1) {
+				for ($m = 0; $m < $rowcount3; $m++) {
+					$student_report[$j][code] .= mysql_result($result3, $m, 'Code');
+					//echo $Code[$j];
+					if ($m + 1 < $rowcount3) {
+						$student_report[$j][code] .= '/';
+					}
 				}
+			} else {
+				$student_report[$j][code] = mysql_result($result3, 0, 'Code');
 			}
 		}
-
-		for ($i = 0; $i < rowcount; $i++) {
-			if ($NameA[i] != '') {
-				$myResult = $myResult . "<tr>
-			<td>" . $NameA[i] . "</td>
-			<td>" . $CodeA[i] . "</td>
-			<td>" . $TitleA[i] . "</td>
-			<td>" . $GradeA[i] . "</td>
+		
+		for ($n = 0; $n < $CurrentIndex; $n++) {
+			$string .= "<tr>
+		<td>" . $student_report[$n][instructor] . "</td>
+		<td>" . $student_report[$n][code] . "</td>
+		<td>" .$student_report[$n][title] . "</td>
+		<td>" .$student_report[$n][grade] . "</td>
 		</tr>";
-			}
 		}
 
-		//close connection
+		$string .= "</table>";
+		echo $string;
+		//close connection
 		mysql_close($link);
 
 	?>
