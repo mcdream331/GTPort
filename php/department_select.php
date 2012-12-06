@@ -11,7 +11,7 @@
 					<select name='department'>
 						<option value='AE'>Aerospace Engineering</option>
 						<option value='BIO'>Biology</option>
-						<option value='BE'>Biological Engineering</option>
+						<option value='BME'>Biomedical Engineering</option>
 						<option value='CS'>Computer Science</option>
 						<option value='ECE'>Electrical & Computer Engineering</option>
 					</select></td>

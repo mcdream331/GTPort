@@ -18,7 +18,7 @@ session_start();
 				WHERE   Username = '$username';";
 
 		$result = mysql_query($sql_query) or die('error: ' . mysql_error());
-		if (mysql_result($result, 0) == '') {
+		if (mysql_result($result, 0,'Name') == '') {
 			echo "Please enter information before using service!<br><input type='button' value='Personal Information' onclick='location.href=\"student_personal_information.php\"'/>";
 		} else {
 			echo "<input type='button' value='Personal Information' onclick='location.href=\"student_personal_information.php\"'/><br><input type='button' value='Student Service' onclick='location.href=\"student_service.php\"'/>";
